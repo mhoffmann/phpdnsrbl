@@ -142,13 +142,15 @@ class DNSRBL
             && count($this->blacklists['dnsbl'])
         ) {
             foreach ($this->blacklists['dnsbl'] as $blacklist) {
-                if (!empty($this->getDnsRecord($blacklist, $host))) {
+                $r = $this->getDnsRecord($blacklist, $host);
+                if (!empty($r)) {
                     return true;
                 }
             }
         } elseif (count($this->blacklists['surbl'])) {
             foreach ($this->blacklists['surbl'] as $blacklist) {
-                if (!empty($this->getDnsRecord($blacklist, $host))) {
+                $r = $this->getDnsRecord($blacklist, $host);
+                if (!empty($r)) {
                     return true;
                 }
             }
