@@ -1,6 +1,6 @@
 # dnsrbl
 
-
+![](https://api.travis-ci.org/mhoffmann/phpdnsrbl.svg?branch=master)
 
 Simple DNSRBL lookup forked from jbboehr/dnsbl.php
 
