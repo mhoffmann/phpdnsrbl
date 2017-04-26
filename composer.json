@@ -12,8 +12,8 @@
   },
   "version": "0.1.0",
   "description": "simple DNSRBL lookup",
-  "homepage": "http://github.com/mhoffmann/dnsrbl",
-  "name": "mhoffmann/dnsrbl",
+  "homepage": "http://github.com/mhoffmann/phpdnsrbl",
+  "name": "mhoffmann/phpdnsrbl",
   "keywords": [
     "rbl", "dnsbl", "surbl"
   ],
