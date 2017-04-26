@@ -1,0 +1,33 @@
+{
+  "authors": [
+    {
+      "email": "marvin.hoffmann@gmail.com",
+      "name": "Marvin Hoffmann"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "DNSRBL\\": "src/"
+    }
+  },
+  "description": "simple DNSRBL lookup",
+  "homepage": "http://github.com/mhoffmann/dnsrbl",
+  "name": "mhoffmann/dnsrbl",
+  "keywords": [
+    "rbl", "dnsbl", "surbl"
+  ],
+  "license": "PHP",
+  "require": {
+    "php": ">=5.3.0",
+    "doctrine/cache": "^1.6"
+  },
+  "type": "library",
+  "require-dev": {
+    "phpunit/phpunit": "5.5",
+    "squizlabs/php_codesniffer": "2.*"
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit --coverage-html report",
+    "phpcs": "vendor/bin/phpcs src/*"
+  }
+}
