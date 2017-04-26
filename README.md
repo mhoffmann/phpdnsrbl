@@ -1,9 +1,13 @@
 # dnsrbl
 
 
+
+Simple DNSRBL lookup forked from jbboehr/dnsbl.php
+
 ## Installation
 
 With [composer](http://getcomposer.org)
+
 
 ```json
 {
@@ -17,19 +21,28 @@ With [composer](http://getcomposer.org)
 ## Usage
 
 ```php
-$dnsbl = new \DNSBL\DNSBL(array(
-    'blacklists' => array(
-        'bl.spamcop.net'
+$rbl = new DNSRBL(
+    array(
+        'dnsbl' => array(
+            'sbl.spamhaus.org'
+        ),
+        'surbl' => array(
+            'dbl.spamhaus.org'
+        )
     )
-));
-var_export($dnsbl->isListed('127.0.0.2')); echo ";\n";
-var_export($dnsbl->getListingBlacklists('127.0.0.2')); echo ";\n";
+);
+
+//checks the surbl
+var_export($rbl->isListed('dbltest.com')); echo ";\n";
+
+//checks the dnsbl
+var_export($rbl->getListingBlacklists('127.0.0.2')); echo ";\n";
 ```
 
 ```php
 true;
 array (
-  0 => 'bl.spamcop.net',
+  0 => 'sbl.spamhaus.org',
 );
 ```
 
