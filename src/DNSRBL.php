@@ -41,7 +41,6 @@ class DNSRBL
         } else {
             $this->cache = new ArrayCache();
         }
-        putenv('RES_OPTIONS=retrans:1 retry:1 timeout:1 attempts:1');
     }
 
     /**

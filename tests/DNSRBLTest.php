@@ -81,14 +81,14 @@ class NetDNSRBLTest extends PHPUnit_Framework_TestCase
 
     public function testGetListingBlacklists()
     {
-        $this->_rbl->setBlacklists(array('dnsbl' => array('dnsbl.sorbs.net')));
-        $this->assertTrue($this->_rbl->isListed("88.77.163.166"));
+        $this->_rbl->setBlacklists(array('dnsbl' => array('sbl.spamhaus.org')));
+        $this->assertTrue($this->_rbl->isListed("127.0.0.2"));
 
-        $r = $this->_rbl->getListingBlacklists("88.77.163.166");
-        $this->assertEquals(array("dnsbl.sorbs.net"), $r);
+        $r = $this->_rbl->getListingBlacklists("127.0.0.2");
+        $this->assertEquals(array("sbl.spamhaus.org"), $r);
 
-        $r2 = $this->_rbl->getListingBlacklists("www.google.de");
-        $this->assertEquals(array(), $r2);
+        $r = $this->_rbl->getListingBlacklists("www.google.de");
+        $this->assertEquals(array(), $r);
     }
 
     public function testMultipleBlacklists()
