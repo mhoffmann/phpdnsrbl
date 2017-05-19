@@ -27,7 +27,7 @@ class DNSRBL
     /**
      * Constructor
      *
-     * @param array         $blacklists  example: array(
+     * @param array $blacklists example: array(
      *                                      'dnsbl' => array('sbl.spamhaus.org'),
      *                                      'surbl' => array('dbl.spamhaus.org')
      *                                   )
@@ -161,9 +161,9 @@ class DNSRBL
      * Get a DNS record
      *
      * @param string $blacklist blacklist hostname
-     * @param string $host      hostname to look up
+     * @param string $host hostname to look up
      *
-     * @return array
+     * @return array|false
      */
     protected function getDnsRecord($blacklist, $host)
     {
@@ -173,14 +173,16 @@ class DNSRBL
             return $records;
         }
         $records = dns_get_record($hostForLookup, DNS_A | DNS_TXT);
-        if (!empty($records)) {
-            $this->cache->save(
-                $this->cachePrefix . $host . $blacklist, $records, $records[0]['ttl']
-            );
-        } else {
-            $this->cache->save(
-                $this->cachePrefix . $host . $blacklist, array(), 3600
-            );
+        if (is_array($records)) {
+            if (!empty($records)) {
+                $this->cache->save(
+                    $this->cachePrefix . $host . $blacklist, $records, $records[0]['ttl']
+                );
+            } else {
+                $this->cache->save(
+                    $this->cachePrefix . $host . $blacklist, array(), 3600
+                );
+            }
         }
         return $records;
     }
@@ -189,7 +191,7 @@ class DNSRBL
      * Get host to lookup. Lookup a host if neccessary and get the
      * complete FQDN to lookup.
      *
-     * @param string $host      Host OR IP to use for building the lookup.
+     * @param string $host Host OR IP to use for building the lookup.
      * @param string $blacklist Blacklist to use for building the lookup.
      *
      * @access protected
